@@ -1,4 +1,6 @@
-specVersion: 0.0.1
+specVersion: 0.0.2
+description: ChainLink Price Feeds
+repository: https://github.com/openpredict/chainlink-price-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,61 +10,17 @@ dataSources:
     source:
       address: "0xf570deefff684d964dc3e15e1f9414283e3f7419"
       abi: BTCUSD
+      startBlock: 10607721
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.2
+      apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - AddedAccess
         - AnswerUpdated
-        - AvailableFundsUpdated
-        - CheckAccessDisabled
-        - CheckAccessEnabled
-        - NewRound
-        - OracleAdminUpdateRequested
-        - OracleAdminUpdated
-        - OraclePermissionsUpdated
-        - OwnershipTransferRequested
-        - OwnershipTransferred
-        - RemovedAccess
-        - RequesterPermissionsSet
-        - RoundDetailsUpdated
-        - SubmissionReceived
-        - ValidatorUpdated
       abis:
         - name: BTCUSD
           file: ./abis/BTCUSD.json
       eventHandlers:
-        - event: AddedAccess(address)
-          handler: handleAddedAccess
         - event: AnswerUpdated(indexed int256,indexed uint256,uint256)
           handler: handleAnswerUpdated
-        - event: AvailableFundsUpdated(indexed uint256)
-          handler: handleAvailableFundsUpdated
-        - event: CheckAccessDisabled()
-          handler: handleCheckAccessDisabled
-        - event: CheckAccessEnabled()
-          handler: handleCheckAccessEnabled
-        - event: NewRound(indexed uint256,indexed address,uint256)
-          handler: handleNewRound
-        - event: OracleAdminUpdateRequested(indexed address,address,address)
-          handler: handleOracleAdminUpdateRequested
-        - event: OracleAdminUpdated(indexed address,indexed address)
-          handler: handleOracleAdminUpdated
-        - event: OraclePermissionsUpdated(indexed address,indexed bool)
-          handler: handleOraclePermissionsUpdated
-        - event: OwnershipTransferRequested(indexed address,indexed address)
-          handler: handleOwnershipTransferRequested
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: RemovedAccess(address)
-          handler: handleRemovedAccess
-        - event: RequesterPermissionsSet(indexed address,bool,uint32)
-          handler: handleRequesterPermissionsSet
-        - event: RoundDetailsUpdated(indexed uint128,indexed uint32,indexed uint32,uint32,uint32)
-          handler: handleRoundDetailsUpdated
-        - event: SubmissionReceived(indexed int256,indexed uint32,indexed address)
-          handler: handleSubmissionReceived
-        - event: ValidatorUpdated(indexed address,indexed address)
-          handler: handleValidatorUpdated
       file: ./src/mapping.ts

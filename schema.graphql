@@ -1,5 +1,6 @@
-type ExampleEntity @entity {
+type Price @entity {
   id: ID!
-  count: BigInt!
-  user: Bytes! # address
+  assetPair: String!
+  timestamp: BigInt!
+  price: BigInt!
 }
