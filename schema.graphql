@@ -1,6 +1,10 @@
 type Price @entity {
   id: ID!
-  assetPair: String!
+  assetPair: AssetPair!
   timestamp: BigInt!
   price: BigInt!
+}
+
+type AssetPair @entity {
+  id: ID!
 }
